@@ -1,0 +1,26 @@
+
+.flex-container {
+    display: flex;
+    justify-content: space-around;
+    padding: 1rem;
+    border: 1px red solid;
+    background-color: blueviolet;
+}
+
+.flex-container-2 {
+    display: flex;
+    justify-content: space-evenly;
+    /* align-items: space-between; */
+    padding: 1rem;
+    border: 1px red solid;
+    background-color: aquamarine;
+}
+
+.btn {
+    padding: 2rem;
+    border-radius: 5%;
+}
+
+h1 {
+    text-align: center;
+}

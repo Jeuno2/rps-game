@@ -1,5 +1,9 @@
 // global declarations
 let log = console.log; //shortening console.log
+// declaration of score keeping variables
+let humanValue = 0;
+let computerValue = 0;
+let result = 0;
 
 // function to determine computer's selection of rock, paper or scissors
 function getComputerChoice() {
@@ -10,59 +14,72 @@ function getComputerChoice() {
     return rpsArray[randomNum];
 } //end function getComputerChoice()
 
-// function to determine human's selection of rock, paper or scissors
-function getHumanChoice() {
-    return prompt("Enter selection of Rock, Paper or Scissors");
-} //end function getHumanChoice()
+function playRound() {
+    const humanChoice = this.textContent.toLowerCase();
+    const computerChoice = getComputerChoice();
+    log(`Player has selected: ${humanChoice}`);
+    log(`Computer has selected: ${computerChoice}`);
 
-function playGame() {
-    // declaration of score keeping variables
-    let humanScore = 0;
-    let computerScore = 0;
+    // showing player and computer selections on scoreboard
+    playerChoice.textContent = humanChoice;
+    compChoice.textContent = computerChoice;
+    
+    if (humanChoice === computerChoice) {
+        winner.textContent = `DRAW!`;
+    }
+    else if (humanChoice === "rock" && computerChoice === "scissors") {
+        tallyPlayer();
+    }
+    else if (humanChoice === "rock" && computerChoice === "paper") {
+        tallyComputer();
+    }
+    else if (humanChoice === "paper" && computerChoice === "scissors") {
+        tallyComputer();
+    }
+    else if (humanChoice === "paper" && computerChoice === "rock") {
+        tallyPlayer();
+    }
+    else if (humanChoice === "scissors" && computerChoice === "rock") {
+        tallyComputer();
+    }
+    else if (humanChoice === "scissors" && computerChoice === "paper") {
+        tallyPlayer();
+    }
 
-    for (let round = 1; round <= 5; round++) {
-        const humanChoice = getHumanChoice();
-        const computerChoice = getComputerChoice();
-        log(`Computer has selected: ${computerChoice}`);
+    if(playerTally.textContent === "5") {
+        winner.textContent = ("Player is first to 5 points; they win!");
+    }
+    
+    if(computerTally.textContent === "5") {
+        winner.textContent = ("Computer is first to 5 points; they win!");
+    }
+} //end function playRound()
 
-        playRound(humanChoice, computerChoice); //calls playRound() for a round to be played
+function tallyPlayer() {
+    winner.textContent = ("Player wins!");
+    humanValue = playerTally.textContent;
+    result = Number(humanValue);
+    playerTally.textContent = result + 1;
+}
 
-        function playRound(humanChoice, computerChoice) {
-            humanChoice = humanChoice.toLowerCase();
-            log(humanChoice);
-            if (humanChoice === computerChoice) {
-                log("result is a draw!");
-            }
-            else if (humanChoice === "rock" && computerChoice === "scissors") {
-                log("Player wins!");
-                humanScore++;
-            }
-            else if (humanChoice === "rock" && computerChoice === "paper") {
-                log("Computer wins!");
-                computerScore++;
-            }
-            else if (humanChoice === "paper" && computerChoice === "scissors") {
-                log("Computer wins!");
-                computerScore++;
-            }
-            else if (humanChoice === "paper" && computerChoice === "rock") {
-                log("Player wins!");
-                humanScoreScore++;
-            }
-            else if (humanChoice === "scissors" && computerChoice === "rock") {
-                log("Computer wins!");
-                computerScore++;
-            }
-            else if (humanChoice === "scissors" && computerChoice === "paper") {
-                log("Player wins!");
-                humanScore++;
-            }
-        } //end function playRound()
-            log(`Player score: ${humanScore}`);
-            log(`Computer score: ${computerScore}`);
-            log(`New round starting!`);
-            log(`--------------------------------`);
-    } // end for loop
-} //end function playGame()
+function tallyComputer() {
+    winner.textContent = ("Computer wins!");
+    computerValue = computerTally.textContent;
+    result = Number(computerValue);
+    computerTally.textContent = result + 1;
+}   
 
-playGame(); //function call to start game
+// DOM button references
+const rockBtn = document.querySelector("#btn1");
+const scissorsBtn = document.querySelector("#btn2");
+const paperBtn = document.querySelector("#btn3");
+rockBtn.addEventListener('click', playRound);
+scissorsBtn.addEventListener('click', playRound);
+paperBtn.addEventListener('click', playRound);
+
+// scoreboard DOM references
+const playerChoice = document.querySelector('.player-choice');
+const compChoice = document.querySelector('.computer-choice');
+const winner = document.querySelector('.outcome');
+const playerTally = document.querySelector('.player-score');
+const computerTally = document.querySelector('.computer-score');
