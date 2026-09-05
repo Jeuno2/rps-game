@@ -1,26 +1,62 @@
-
-.flex-container {
-    display: flex;
-    justify-content: space-around;
-    padding: 1rem;
-    border: 1px red solid;
-    background-color: blueviolet;
+* {
+  font-size: 1.2rem;
 }
 
-.flex-container-2 {
-    display: flex;
-    justify-content: space-evenly;
-    /* align-items: space-between; */
-    padding: 1rem;
-    border: 1px red solid;
-    background-color: aquamarine;
-}
-
-.btn {
-    padding: 2rem;
-    border-radius: 5%;
+body {
+  background-color: #000;
 }
 
 h1 {
-    text-align: center;
+  color: rgb(158, 219, 108);
+  text-align: center;
+  font-size: 2rem;
+}
+
+.flex-container-main {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin: 0 auto;
+  border: 3px solid gold;
+  border-radius: 1rem;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  gap: 1rem;
+}
+
+.flex-container-2 {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 1rem;
+}
+
+.flex-score-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background-color: rgb(158, 219, 108);
+  border-radius: 0.5rem;
+  width: 25%;
+  padding: 1rem;
+  text-align: center;
+  border: 5px solid gold;
+}
+
+.btn {
+  padding: 1rem 2rem;
+  border-radius: 1rem;
+  border: none;
+  background-color: rgb(158, 219, 108);
+  cursor: pointer;
+}
+
+.btn:hover {
+  scale: 1.1;
+  box-shadow: 0 0 15px 5px green;
 }
